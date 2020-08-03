@@ -3,10 +3,13 @@ class Solution {
         if(s == null)
             return false;
         
-        //to lowercase
         s = s.toLowerCase();
         
-        for(int i = 0, j = s.length() - 1; i < j; ){
+        
+        int i = 0, j = s.length() - 1;
+        
+        
+        while( i < j ){
             char ch1 = s.charAt(i);            
             if(!Character.isLetterOrDigit(ch1)){
                 i++;
