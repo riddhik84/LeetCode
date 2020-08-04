@@ -1,0 +1,28 @@
+class Solution {
+//time to execute is same for with and without loop functions
+
+    //solution with loop
+    public boolean isPowerOfFour_(int num) {
+        if(num < 1){
+            return false;
+        }
+        
+        while(num % 4 == 0){
+            num /= 4;
+        }
+        
+        return num == 1;
+    }
+    
+    //solution without loop
+    public boolean isPowerOfFour__(int num) {
+        return num > 0 &&
+            (num & (num - 1)) == 0 &&
+            (num & 0x55555555) != 0;
+    }
+    
+    //solution without loop
+    public boolean isPowerOfFour(int num) {
+        return Math.log(num)/Math.log(2) % 2 == 0;
+    }
+}
