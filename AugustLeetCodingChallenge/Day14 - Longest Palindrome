@@ -1,0 +1,30 @@
+class Solution {
+    
+    public int longestPalindrome(String s) {
+        //count characters
+        int[] chars = new int[128];
+        //counter
+        int counter = 0;
+        
+        //find even chars count
+        for(int i = 0; i < s.length(); i++){
+            char c = s.charAt(i);
+            chars[(int)c]++;
+            
+            if(chars[(int)c] == 2){
+                counter += 2;
+                chars[(int)c] -= 2;
+            }
+        }
+        
+        //check char array if there is odd count
+        for(int i = 0; i < chars.length; i++){
+            if(chars[i] == 1){
+                counter++;
+                break;
+            }
+        }
+        
+        return counter;
+    }
+}
