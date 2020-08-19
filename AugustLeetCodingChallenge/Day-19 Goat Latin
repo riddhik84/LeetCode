@@ -1,0 +1,95 @@
+class Solution {
+    
+    //my solution
+    public String toGoatLatin_(String S) {
+        HashSet<Character> vowels = new HashSet<>();
+        vowels.add('a');
+        vowels.add('e');
+        vowels.add('i');
+        vowels.add('o');
+        vowels.add('u');
+        vowels.add('A');
+        vowels.add('E');
+        vowels.add('I');
+        vowels.add('O');
+        vowels.add('U');
+        
+        //convert string into string array
+        String[] array = S.split(" ");
+        
+        StringBuilder result = new StringBuilder();
+        StringBuilder a = new StringBuilder("a");
+        
+        //for each word
+        for(String word : array){ 
+            result.append(word);
+            
+            //check if word does not start with vowel
+            //remove first letter and add it to last
+            char first = word.charAt(0);
+            
+            if(!vowels.contains(first)){
+                result.deleteCharAt(result.length() - word.length());
+                result.append(first);
+            }
+
+            result.append("ma");
+            result.append(a);
+            result.append(" ");
+           
+            a.append("a");
+        }
+        
+        result.deleteCharAt(result.length() -1);
+        
+        //convert sb to string and return
+        return result.toString();
+                
+    }
+    
+    //1 ms solution from submissions
+    public String toGoatLatin(String S) {
+        boolean[] isVowel = new boolean[256];
+        isVowel['A'] = true;
+        isVowel['a'] = true;
+        isVowel['E'] = true;
+        isVowel['e'] = true;
+        isVowel['I'] = true;
+        isVowel['i'] = true;
+        isVowel['O'] = true;
+        isVowel['o'] = true;
+        isVowel['U'] = true;
+        isVowel['u'] = true;
+        
+        StringBuilder sb = new StringBuilder();
+        StringBuilder a = new StringBuilder();
+        
+        String[] words = S.split(" ");
+        if(words.length == 0 || words[0].length() == 0) return S;
+        
+        for(String word: words) {
+            
+            // StringBuilder current = new StringBuilder(word);
+            
+            char first = word.charAt(0);
+            
+            sb.append(word);
+            
+            if(!isVowel[first]) {
+                sb.deleteCharAt(sb.length() - word.length());
+                sb.append(first);
+            }
+            
+            
+            // sb.append(current);
+            sb.append("ma");
+            sb.append(a.append('a'));
+            sb.append(' ');
+            
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        
+        return sb.toString();
+        
+    }
+}
