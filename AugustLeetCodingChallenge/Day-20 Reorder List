@@ -1,0 +1,55 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public void reorderList(ListNode head) {
+        if(head == null)
+            return;
+        
+        //1. find the middle node in linked list using two pointers
+        ListNode pointer1 = head;
+        ListNode pointer2 = head;
+        
+        //find the mid of the linked list
+        while(pointer2 != null && pointer2.next != null){
+            pointer1 = pointer1.next;
+            pointer2 = pointer2.next.next;
+        }
+        
+        //mid of linked list - pointer1
+        
+        //2. reverse linked list from mid pointer
+        ListNode prev = null;
+        ListNode next = null;
+        ListNode current = pointer1; //mid node of LL
+        
+        while(current != null){
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        //ListNode list2 = prev;
+        //System.out.println(list2.val);
+        
+        //3. Merge First half and second half of the linked list
+        ListNode tmp = null;
+        ListNode first = head, second = prev;
+        while (second.next != null) {
+            tmp = first.next;
+            first.next = second;
+            first = tmp;
+
+            tmp = second.next;
+            second.next = first;
+            second = tmp;
+        }
+    }
+}
