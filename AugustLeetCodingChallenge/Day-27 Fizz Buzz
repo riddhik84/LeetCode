@@ -1,0 +1,21 @@
+class Solution {
+    public List<String> fizzBuzz(int n) {
+        List<String> output = new ArrayList<>();
+        
+        for(int i = 1; i <= n; i++){
+            boolean div_3 = (i % 3 == 0) ? true : false;
+            boolean div_5 = (i % 5 == 0) ? true : false;
+            
+            if(div_3 && div_5){
+                output.add("FizzBuzz");
+            } else if (div_3){
+                output.add("Fizz");
+            } else if (div_5){
+                output.add("Buzz");
+            } else {
+                output.add(String.valueOf(i));    //Use String.valueOf to make the code run faster instead of using i+"" to convert int to str
+            }
+        }
+        return output;
+    }
+}
